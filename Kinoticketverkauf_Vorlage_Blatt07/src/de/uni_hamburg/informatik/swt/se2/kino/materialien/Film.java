@@ -76,7 +76,7 @@ public class Film
     /**
      * Gibt zurück, ob dieser Film Überlaenge hat.
      */
-    public boolean hatUeberlaenge()
+    boolean hatUeberlaenge()
     {
         return _ueberlaenge;
     }

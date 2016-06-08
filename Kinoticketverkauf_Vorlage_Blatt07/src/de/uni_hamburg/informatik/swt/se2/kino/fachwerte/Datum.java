@@ -48,7 +48,8 @@ public final class Datum implements Comparable<Datum>
      */
     public Datum(int tag, int monat, int jahr)
     {
-        assert istGueltig(tag, monat, jahr) : "Vorbedingung verletzt: istGueltig(tag, monat, jahr)";
+        assert istGueltig(tag, monat,
+                jahr) : "Vorbedingung verletzt: istGueltig(tag, monat, jahr)";
 
         _tag = tag;
         _monat = monat;
@@ -83,7 +84,7 @@ public final class Datum implements Comparable<Datum>
      * @return <code>true</code> wenn drei übergebene Zahlen ein gültiges Datum
      *         ergeben, ansonsten <code>false</code>.
      */
-    public static boolean istGueltig(int tag, int monat, int jahr)
+    static boolean istGueltig(int tag, int monat, int jahr)
     {
         boolean gueltig = ((monat >= 1) && (monat <= 12));
         if (gueltig)
@@ -94,7 +95,7 @@ public final class Datum implements Comparable<Datum>
                 CALENDAR.set(Calendar.YEAR, jahr);
                 CALENDAR.set(Calendar.MONTH, monat - 1);
                 gueltig = ((tag >= 1) && (tag <= CALENDAR
-                        .getActualMaximum(Calendar.DAY_OF_MONTH)));
+                    .getActualMaximum(Calendar.DAY_OF_MONTH)));
             }
         }
         return gueltig;
@@ -122,8 +123,8 @@ public final class Datum implements Comparable<Datum>
         {
             Datum vergleichsdatum = (Datum) o;
             result = ((getTag() == vergleichsdatum.getTag())
-                    && (getMonat() == vergleichsdatum.getMonat()) && (getJahr() == vergleichsdatum
-                    .getJahr()));
+                    && (getMonat() == vergleichsdatum.getMonat())
+                    && (getJahr() == vergleichsdatum.getJahr()));
         }
         return result;
     }
@@ -169,7 +170,7 @@ public final class Datum implements Comparable<Datum>
      * @require tage >= 0
      * @ensure result != null
      */
-    public Datum minus(int tage)
+    Datum minus(int tage)
     {
         assert tage >= 0 : "Vorbedingung verletzt: tage >= 0";
         Datum datum = null;
@@ -195,7 +196,7 @@ public final class Datum implements Comparable<Datum>
      * @require tage >= 0
      * @ensure result != null
      */
-    public Datum plus(int tage)
+    Datum plus(int tage)
     {
         assert tage >= 0 : "Vorbedingung verletzt: tage >= 0";
         Datum datum = null;
@@ -239,7 +240,7 @@ public final class Datum implements Comparable<Datum>
      * 
      * @require startDatum != null
      */
-    public int tageSeit(Datum startDatum)
+    int tageSeit(Datum startDatum)
     {
         assert startDatum != null : "Vorbedingung verletzt: startDatum != null";
 

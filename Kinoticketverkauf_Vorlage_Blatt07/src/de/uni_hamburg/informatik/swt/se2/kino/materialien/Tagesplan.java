@@ -32,7 +32,8 @@ public class Tagesplan
             // Der Vergleich der Anfangszeiten reicht hier aus, weil in
             // einem Tagesplan sowieso nur Vorstellungen mit gleichem Datum
             // laufen.
-            return v1.getAnfangszeit().compareTo(v2.getAnfangszeit());
+            return v1.getAnfangszeit()
+                .compareTo(v2.getAnfangszeit());
         }
     };
 
@@ -43,7 +44,7 @@ public class Tagesplan
      * 
      * @require tag != null
      */
-    public Tagesplan(Datum tag)
+    Tagesplan(Datum tag)
     {
         assert tag != null : "Vorbedingung verletzt: tag != null";
 
@@ -69,10 +70,11 @@ public class Tagesplan
      * @require v != null
      * @require die Vorstellung laeuft an dem Tag dieses Tagesplans
      */
-    public void fuegeVorstellungHinzu(Vorstellung v)
+    void fuegeVorstellungHinzu(Vorstellung v)
     {
         assert v != null : "Vorbedingung verletzt: v != null";
-        assert v.getDatum().equals(_tag) : "Vorbedingung verletzt: v.getDatum().equals(_tag)";
+        assert v.getDatum()
+            .equals(_tag) : "Vorbedingung verletzt: v.getDatum().equals(_tag)";
 
         _vorstellungen.add(v);
     }

@@ -32,7 +32,7 @@ import de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Platz;
  */
 class JPlatzplan extends JComponent
 {
-    public static Dimension PLATZBUTTON_GROESSE = new Dimension(22, 22);
+    private static Dimension PLATZBUTTON_GROESSE = new Dimension(22, 22);
 
     private JPlatzButton[][] _buttons;
     private ActionListener _buttonListener;
@@ -174,9 +174,10 @@ class JPlatzplan extends JComponent
      */
     private void imGitterEinfuegen(Component component, int gridx, int gridy)
     {
-        add(component, new GridBagConstraints(gridx, gridy, 1, 1, 1.0, 1.0,
-                GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(
-                        2, 2, 2, 2), 0, 0));
+        add(component,
+                new GridBagConstraints(gridx, gridy, 1, 1, 1.0, 1.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.NONE,
+                        new Insets(2, 2, 2, 2), 0, 0));
     }
 
     /**

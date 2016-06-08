@@ -24,8 +24,10 @@ public final class Uhrzeit implements Comparable<Uhrzeit>
      */
     public Uhrzeit(int stunden, int minuten)
     {
-        assert (stunden >= 0) && (stunden < 24) : "Vorbedingung verletzt: stunden >= 0 && stunden < 24";
-        assert (minuten >= 0) && (minuten < 60) : "Vorbedingung verletzt: minuten >= 0 && minuten < 60";
+        assert (stunden >= 0)
+                && (stunden < 24) : "Vorbedingung verletzt: stunden >= 0 && stunden < 24";
+        assert (minuten >= 0)
+                && (minuten < 60) : "Vorbedingung verletzt: minuten >= 0 && minuten < 60";
 
         _stunden = stunden;
         _minuten = minuten;
@@ -38,7 +40,8 @@ public final class Uhrzeit implements Comparable<Uhrzeit>
      */
     public int getStunden()
     {
-        assert (_stunden >= 0) && (_stunden < 24) : "Nachbedingung verletzt: (result >= 0) && (result < 24)";
+        assert (_stunden >= 0)
+                && (_stunden < 24) : "Nachbedingung verletzt: (result >= 0) && (result < 24)";
 
         return _stunden;
     }
@@ -50,7 +53,8 @@ public final class Uhrzeit implements Comparable<Uhrzeit>
      */
     public int getMinuten()
     {
-        assert (_minuten >= 0) && (_minuten < 60) : "Nachbedingung verletzt: (result >= 0) && (result < 60)";
+        assert (_minuten >= 0)
+                && (_minuten < 60) : "Nachbedingung verletzt: (result >= 0) && (result < 60)";
 
         return _minuten;
     }
@@ -66,12 +70,13 @@ public final class Uhrzeit implements Comparable<Uhrzeit>
      * @require startzeit != null
      * @ensure result >= 0
      */
-    public int minutenSeit(Uhrzeit startzeit)
+    int minutenSeit(Uhrzeit startzeit)
     {
         assert startzeit != null : "Vorbedingung verletzt: startzeit != null";
 
         boolean amSelbenTag = (_stunden > startzeit._stunden)
-                || ((_stunden == startzeit._stunden) && (_minuten >= startzeit._minuten));
+                || ((_stunden == startzeit._stunden)
+                        && (_minuten >= startzeit._minuten));
 
         Uhrzeit u2 = amSelbenTag ? this : startzeit;
         Uhrzeit u1 = amSelbenTag ? startzeit : this;

@@ -51,7 +51,8 @@ public class Kino
         {
             assert vorstellung != null : "Vorbedingung verletzt: vorstellungen enthaelt keine Nullpointer";
             Kinosaal saal = vorstellung.getKinosaal();
-            assert _kinosaele.contains(saal) : "Vorbedingung verletzt: alle Vorstellungen laufen in uebergebenen Kinosaelen";
+            assert _kinosaele.contains(
+                    saal) : "Vorbedingung verletzt: alle Vorstellungen laufen in uebergebenen Kinosaelen";
             Datum datum = vorstellung.getDatum();
             Tagesplan tagesplan = _tagesplaene.get(datum);
             if (tagesplan == null)
@@ -68,7 +69,7 @@ public class Kino
      * 
      * @param kinosaal der Kinosaal.
      */
-    public boolean hatKinosaal(Kinosaal kinosaal)
+    boolean hatKinosaal(Kinosaal kinosaal)
     {
         return _kinosaele.contains(kinosaal);
     }

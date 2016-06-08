@@ -140,7 +140,7 @@ public class Vorstellung
      * 
      * @require platz != null
      */
-    public boolean hatPlatz(Platz platz)
+    boolean hatPlatz(Platz platz)
     {
         assert platz != null : "Vorbedingung verletzt: platz != null";
 
@@ -155,7 +155,7 @@ public class Vorstellung
      * 
      * @return true, falls alle Plätze existieren, false sonst.
      */
-    public boolean hatPlaetze(Set<Platz> plaetze)
+    boolean hatPlaetze(Set<Platz> plaetze)
     {
         assert plaetze != null : "Vorbedingung verletzt: plaetze != null";
 
@@ -215,7 +215,7 @@ public class Vorstellung
      * 
      * @ensure istPlatzVerkauft(reihe, sitz)
      */
-    public void verkaufePlatz(Platz platz)
+    void verkaufePlatz(Platz platz)
     {
         assert platz != null : "Vorbedingung verletzt: platz != null";
         assert hatPlatz(platz) : "Vorbedingung verletzt: hatPlatz(platz)";
@@ -236,7 +236,7 @@ public class Vorstellung
      * 
      * @ensure !istPlatzVerkauft(reihe, sitz)
      */
-    public void stornierePlatz(Platz platz)
+    void stornierePlatz(Platz platz)
     {
         assert platz != null : "Vorbedingung verletzt: platz != null";
         assert hatPlatz(platz) : "Vorbedingung verletzt: hatPlatz(platz)";
