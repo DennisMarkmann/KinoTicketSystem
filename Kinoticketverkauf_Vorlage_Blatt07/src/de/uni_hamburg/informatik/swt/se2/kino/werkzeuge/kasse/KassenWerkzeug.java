@@ -133,12 +133,17 @@ public class KassenWerkzeug implements Observer
     @Override
     public void update(Observable o, Object arg)
     {
-            if (o instanceof VorstellungsAuswaehlWerkzeug){
-                        setzeAusgewaehlteVorstellung();
-            } else if (o instanceof PlatzVerkaufsWerkzeug){
-                //TODO keine Ahnung was das Ding überhaupt tun soll..
-            } else if (o instanceof DatumAuswaehlWerkzeug){
-                        setzeTagesplanFuerAusgewaehltesDatum();
-            }
+        if (o instanceof VorstellungsAuswaehlWerkzeug)
+        {
+            setzeAusgewaehlteVorstellung();
+        }
+        else if (o instanceof PlatzVerkaufsWerkzeug)
+        {
+            //TODO keine Ahnung was das Ding überhaupt tun soll..
+        }
+        else if (o instanceof DatumAuswaehlWerkzeug)
+        {
+            setzeTagesplanFuerAusgewaehltesDatum();
+        }
     }
 }
