@@ -2,6 +2,8 @@ package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.kasse;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Datum;
 import de.uni_hamburg.informatik.swt.se2.kino.materialien.Kino;
@@ -19,7 +21,7 @@ import de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.vorstellungsauswaehler.V
  * @author SE2-Team
  * @version SoSe 2016
  */
-public class KassenWerkzeug
+public class KassenWerkzeug implements Observer
 {
     // Das Material dieses Werkzeugs
     private Kino _kino;
@@ -50,6 +52,10 @@ public class KassenWerkzeug
         _datumAuswaehlWerkzeug = new DatumAuswaehlWerkzeug();
         _vorstellungAuswaehlWerkzeug = new VorstellungsAuswaehlWerkzeug();
 
+        _platzVerkaufsWerkzeug.addObserver(this);
+        _datumAuswaehlWerkzeug.addObserver(this);
+        _vorstellungAuswaehlWerkzeug.addObserver(this);
+
         // UI erstellen (mit eingebetteten UIs der direkten Subwerkzeuge)
         _ui = new KassenWerkzeugUI(_platzVerkaufsWerkzeug.getUIPanel(),
                 _datumAuswaehlWerkzeug.getUIPanel(),
@@ -67,14 +73,15 @@ public class KassenWerkzeug
      */
     private void registriereUIAktionen()
     {
-        _ui.getBeendenButton().addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
+        _ui.getBeendenButton()
+            .addActionListener(new ActionListener()
             {
-                reagiereAufBeendenButton();
-            }
-        });
+                @Override
+                public void actionPerformed(ActionEvent e)
+                {
+                    reagiereAufBeendenButton();
+                }
+            });
     }
 
     /**
@@ -118,5 +125,17 @@ public class KassenWerkzeug
     private Vorstellung getAusgewaehlteVorstellung()
     {
         return _vorstellungAuswaehlWerkzeug.getAusgewaehlteVorstellung();
+    }
+
+    @Override
+    public void update(Observable o, Object arg)
+    {
+            if (o instanceof VorstellungsAuswaehlWerkzeug){
+                        setzeAusgewaehlteVorstellung();
+            } else if (o instanceof PlatzVerkaufsWerkzeug){
+                //TODO keine Ahnung was das Ding überhaupt tun soll..
+            } else if (o instanceof DatumAuswaehlWerkzeug){
+                        setzeTagesplanFuerAusgewaehltesDatum();
+            }
     }
 }

@@ -2,6 +2,7 @@ package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.datumsauswaehler;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 
 import javax.swing.JPanel;
 
@@ -16,7 +17,7 @@ import de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Datum;
  * @author SE2-Team
  * @version SoSe 2016
  */
-public class DatumAuswaehlWerkzeug
+public class DatumAuswaehlWerkzeug extends Observable
 {
     private DatumAuswaehlWerkzeugUI _ui;
     private Datum _ausgewaehltesDatum;
@@ -40,7 +41,8 @@ public class DatumAuswaehlWerkzeug
     {
         _ausgewaehltesDatum = _ausgewaehltesDatum.vorherigerTag();
         _ui.getDatumLabel()
-                .setText(_ausgewaehltesDatum.getFormatiertenString());
+            .setText(_ausgewaehltesDatum.getFormatiertenString());
+        this.update();
     }
 
     /**
@@ -50,7 +52,8 @@ public class DatumAuswaehlWerkzeug
     {
         _ausgewaehltesDatum = _ausgewaehltesDatum.naechsterTag();
         _ui.getDatumLabel()
-                .setText(_ausgewaehltesDatum.getFormatiertenString());
+            .setText(_ausgewaehltesDatum.getFormatiertenString());
+        this.update();
     }
 
     /**
@@ -80,22 +83,30 @@ public class DatumAuswaehlWerkzeug
      */
     private void registriereUIAktionen()
     {
-        _ui.getZurueckButton().addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
+        _ui.getZurueckButton()
+            .addActionListener(new ActionListener()
             {
-                zurueckButtonWurdeGedrueckt();
-            }
-        });
+                @Override
+                public void actionPerformed(ActionEvent e)
+                {
+                    zurueckButtonWurdeGedrueckt();
+                }
+            });
 
-        _ui.getWeiterButton().addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
+        _ui.getWeiterButton()
+            .addActionListener(new ActionListener()
             {
-                weiterButtonWurdeGedrueckt();
-            }
-        });
+                @Override
+                public void actionPerformed(ActionEvent e)
+                {
+                    weiterButtonWurdeGedrueckt();
+                }
+            });
+    }
+
+    private void update()
+    {
+        super.setChanged();
+        super.notifyObservers();
     }
 }
