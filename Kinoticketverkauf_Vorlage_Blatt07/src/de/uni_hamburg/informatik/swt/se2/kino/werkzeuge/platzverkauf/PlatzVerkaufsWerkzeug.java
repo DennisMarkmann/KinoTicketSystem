@@ -199,6 +199,9 @@ public class PlatzVerkaufsWerkzeug extends Observable
         aktualisierePlatzplan();
     }
 
+    /**
+     * Benachrichtigt den Observer über eine Änderung.
+     */
     private void update()
     {
         super.setChanged();

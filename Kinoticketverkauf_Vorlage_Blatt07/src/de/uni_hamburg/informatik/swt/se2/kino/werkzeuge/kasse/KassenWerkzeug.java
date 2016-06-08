@@ -127,6 +127,9 @@ public class KassenWerkzeug implements Observer
         return _vorstellungAuswaehlWerkzeug.getAusgewaehlteVorstellung();
     }
 
+    /**
+     * Methode die das Programm aktualisiert, wenn eins der registrierten Werkzeuge eine Änderung meldet.
+     */
     @Override
     public void update(Observable o, Object arg)
     {

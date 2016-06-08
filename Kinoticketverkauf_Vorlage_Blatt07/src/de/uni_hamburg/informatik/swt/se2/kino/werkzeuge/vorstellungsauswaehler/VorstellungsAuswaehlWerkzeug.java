@@ -123,6 +123,9 @@ public class VorstellungsAuswaehlWerkzeug extends Observable
             });
     }
 
+    /**
+     * Benachrichtigt den Observer über eine Änderung.
+     */
     private void update()
     {
         super.setChanged();
